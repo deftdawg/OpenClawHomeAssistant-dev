@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:17.2.5
 FROM ${BUILD_FROM}
 
 # Base image is Alpine (HA add-ons base). We install Node.js from Alpine edge.
@@ -24,8 +24,6 @@ RUN apk add --no-cache \
     python3 \
     nginx \
     ttyd \
-    nghttp2-libs \
-    openssl \
     nodejs-current \
     npm
 
