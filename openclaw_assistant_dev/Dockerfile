@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     sudo \
     vim \
-    nano fd-find bat less \
+    nano fd-find bat less ripgrep \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
