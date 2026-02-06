@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     sudo \
     vim \
-    nano \
+    nano fd-find bat less \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -81,9 +81,14 @@ USER linuxbrew
 RUN /home/linuxbrew/.linuxbrew/bin/brew --version && /home/linuxbrew/.linuxbrew/bin/brew install gcc
 USER root
 
-# Install OpenClaw globally
+# Install OpenClaw from source
 RUN npm config set fund false && npm config set audit false \
- && npm install -g openclaw@2026.2.2-3
+ && git clone --depth 1 https://github.com/deftdawg/openclaw.git /tmp/openclaw \
+ && cd /tmp/openclaw \
+ && npm install \
+ && npm run build \
+ && npm install -g . \
+ && rm -rf /tmp/openclaw
 
 COPY run.sh /run.sh
 COPY oc_config_helper.py /oc_config_helper.py
