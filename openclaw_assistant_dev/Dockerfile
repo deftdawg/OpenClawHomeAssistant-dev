@@ -85,6 +85,8 @@ USER root
 RUN npm install -g pnpm
 
 # Install OpenClaw from source
+# ADD fetches latest commit info - Docker busts cache when it changes
+ADD https://api.github.com/repos/deftdawg/openclaw/commits/main?per_page=1 /tmp/openclaw-version.json
 RUN npm config set fund false && npm config set audit false \
   && git clone --depth 1 https://github.com/deftdawg/openclaw.git /tmp/openclaw \
   && cd /tmp/openclaw \
