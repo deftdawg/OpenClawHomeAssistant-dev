@@ -86,12 +86,13 @@ RUN npm install -g pnpm
 
 # Install OpenClaw from source
 RUN npm config set fund false && npm config set audit false \
- && git clone --depth 1 https://github.com/deftdawg/openclaw.git /tmp/openclaw \
- && cd /tmp/openclaw \
- && npm install \
- && npm run build \
- && npm install -g . \
- && rm -rf /tmp/openclaw
+  && git clone --depth 1 https://github.com/deftdawg/openclaw.git /tmp/openclaw \
+  && cd /tmp/openclaw \
+  && pnpm install \
+  && pnpm run build \
+  && pnpm pack \
+  && npm install -g openclaw-*.tgz \
+  && rm -rf /tmp/openclaw
 
 COPY run.sh /run.sh
 COPY oc_config_helper.py /oc_config_helper.py
