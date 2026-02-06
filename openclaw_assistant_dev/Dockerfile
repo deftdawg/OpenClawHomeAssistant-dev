@@ -81,6 +81,9 @@ USER linuxbrew
 RUN /home/linuxbrew/.linuxbrew/bin/brew --version && /home/linuxbrew/.linuxbrew/bin/brew install gcc
 USER root
 
+# Install pnpm (required by OpenClaw)
+RUN npm install -g pnpm
+
 # Install OpenClaw from source
 RUN npm config set fund false && npm config set audit false \
  && git clone --depth 1 https://github.com/deftdawg/openclaw.git /tmp/openclaw \
